@@ -9,6 +9,12 @@ $.getJSON('goods.json', function(data){
 	showCart(); //вывожу товары на страницу
 
 	function showCart(){
+		if ( $.isEmptyObject(cart) ) {
+			//корзина пуста
+			let out = 'Корзина пуста. Добавте товар в корзину <a href="index.html">главная страница</a>';
+			$('#my-cart').html(out);
+		}
+		else {
 		let out = '';
 		for (let key in cart){
 			//out+= key + '---'+cart[key]+'<br>'; //выводим индексы и количество товаров
@@ -25,6 +31,8 @@ $.getJSON('goods.json', function(data){
 		$('.plus').on('click', plusGoods);
 		$('.minus').on('click', minusGoods);
 		$('.delete').on('click', deleteGoods);
+
+		}	
 	}
 	function plusGoods(){
 		let articul = $(this).attr('data-art');
